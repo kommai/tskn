@@ -1,0 +1,4 @@
+{
+    "debug": true,
+    "dsn": "sqlite:/home/mitsumotocs/kommai.app/storage/tskn/data-dev.sqlite"
+}

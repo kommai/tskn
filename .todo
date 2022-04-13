@@ -1,0 +1,49 @@
+The important is, each component TO BE ABLE TO MOCK, PERFORM STAND ALONE
+-- I guess it's true, but it's very costly
+
+[NEXT UP]
+
+
+
+
+[LATER]
+what if update/delete target has already been deleted? - need to handle this somehow.
+handle HTTP Gone message PROPERLY
+
+no function keyword! use anonymous function -- this allows you to const b = a (which is another function)
+
+use Config.SOME_VALUE instead of hard-coding
+let task controller handle current, selected project/task? -- that way you don't need to pass them to components as arguments
+browser sniffing with implementation detection (window.stop?)
+
+focusing input glitch on iOS safari -- solved, be more efficient -- move to kommai?
+https://qiita.com/hibikikudo/items/2cb10536f4816d304f54
+
+tippy tooltips come ABOVE the sidebar. should be BELOW
+
+Project/TaskController -> Project(Task)ApiController
+
+createNewProject/Task would be helper rather than controller?
+would it be nicer to ProjectHelper.doSomethingForProject() be just doSomethingForProject?
+ApiTrait/PageTrait can take care of sending response?
+
+destroying project should be like project updating key?
+(auth api then destroy api instead of sending key to destroy api)
+
+[Kommai Components]
+methods can be implemented with factory pattern?
+StagingButton.stage(element) => const sb = StagingButton.create(element); sb.stage();
+way to disable entire menu or each menu item (e.g. while loading main content)
+
+[Pherret]
+transaction is not working when nested - PDOException "There is no active transaction"
+(transaction start) delete project -> (another transaction start) delete tasks -> update project (commit) -> (commit - but its already comitted and transaction is not active anymore!)
+
+
+desktop media queries and styles
+
+[FUTURE]
+
+back to reactive with proxy? -- since synchronizing components and dependencies are getting too complex...
+
+[DONE]

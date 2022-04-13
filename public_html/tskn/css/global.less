@@ -1,0 +1,27 @@
+/**
+ * Global styles for the website
+ */
+// this seems work! move to kommai component?
+// work to avoid iOS' focus-n-scroll glitch
+html, body {
+    -webkit-overflow-scrolling: touch !important;
+    overflow: auto;
+    height: 100%;
+}
+body {
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100%;
+}
+
+// typography
+// move to kommai later, maybe?
+h1 {
+    margin: 2rem 0;
+    line-height: 1;
+    font-size: 3rem;
+    letter-spacing: -.25rem;
+    &:first-child {
+        margin-top: 1rem;
+    }
+}

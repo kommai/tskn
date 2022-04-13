@@ -1,0 +1,39 @@
+.kc.form {
+  margin: 0;
+  /*
+    .actions {
+        margin-top: 1rem;
+    }
+    */
+}
+.kc.form .fields > .field {
+  margin-bottom: 1rem;
+}
+.kc.form .fields > .field:last-child {
+  margin-bottom: 0;
+}
+.kc.form .fields > .field > .title {
+  width: 100%;
+  height: 1rem;
+  line-height: 1rem;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
+  white-space: wrap;
+}
+.kc.form .fields + .actions {
+  margin-top: 1rem;
+}
+.kc.form .fields + .kc.form .actions {
+  margin-top: 1rem;
+}
+/*
+@media (min-width: @desktop-breakpoint) {
+    .kc.form > .actions {
+        display: flex;
+        flex-flow: row nowrap;
+        //justify-content: space-between;
+        justify-content: center;
+        //background-color: red;
+    }
+}
+*/

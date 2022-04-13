@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base href="../../../public_html/tskn/" tal:attributes="href string:/" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-PVBCHQFB3N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-PVBCHQFB3N');
+    </script>
+    <script src="https://unpkg.com/@popperjs/core@2" defer="defer"></script>
+    <script src="https://unpkg.com/tippy.js@6" defer="defer"></script>
+    <script type="module" src="js/project-create.js" defer="defer"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="stylesheet" href="vendor/fontawesome-pro/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css?853423442289"/>
+    <title>たすくん</title>
+</head>
+<body>
+    <main class="kc main">
+        <div class="project">
+            <div class="create">
+                <h1>新しいプロジェクト</h1>
+                <form class="kc form">
+                    <div class="fields">
+                        <div class="field title">
+                            <div class="title">タイトル</div>
+                            <div class="kc input">
+                                <input type="text" name="title" value="" placeholder="" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="field title">
+                            <div class="title">合言葉</div>
+                            <div class="kc input">
+                                <input type="text" name="key" value="" placeholder="" autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button type="submit" class="kc button staging primary">
+                            <span class="stage" data-stage-name="idle"><i class="far fa-sparkles"></i>作る</span>
+                            <span class="stage" data-stage-name="busy"><i class="far fa-spinner-third fa-spin"></i>作っています</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!--
+            <div class="create-done">
+                <h1>プロジェクト「」ができました。</h1>
+                <p>このページをブックマークしてください。</p>
+                <p>
+                    <button type="button" class="kc button primary"><i class="far fa-check-circle"></i>ブックマークしました</button>
+                </p>
+            </div>
+        -->
+        </div>
+    </main>
+    <div class="kc blocker"><i class="far fa-spinner-third fa-spin"></i></div>
+</body>
+</html>

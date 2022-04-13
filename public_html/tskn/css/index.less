@@ -1,0 +1,47 @@
+.index {
+    .title {
+        > h1 {
+            > .version {
+                margin-left: .5rem;
+                vertical-align: baseline;
+                font-size: .75rem;
+                letter-spacing: normal;
+                &::before {
+                    content: "v";
+                }
+            }
+        }
+        > p {
+            //margin-top: .5rem;
+            margin-top: -1.5rem;
+            line-height: 1.25;
+            font-size: 1rem;
+        }
+    }
+    .start {
+        margin: 2rem 0;
+        //margin-top: 2rem;
+    }
+    .excuse {
+        margin-top: 2rem;
+        line-height: 1.25;
+        font-size: .75rem;
+        color: #999;
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style-type: none;
+        }
+        li {
+            display: inline;
+            &::after {
+                content: "／";
+            }
+            &:last-child::after {
+                content: none;
+            }
+        }
+    }
+}

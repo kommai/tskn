@@ -1,0 +1,201 @@
+.project {
+  touch-action: manipulation;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.project > .title {
+  --height: 2rem;
+  margin-bottom: 1rem;
+}
+.project > .title > h1 {
+  margin: 0;
+  width: 100%;
+  height: var(--height);
+  line-height: var(--height);
+  overflow: hidden;
+  text-align: center;
+  white-space: normal;
+}
+.project > .chart {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  /*
+        > canvas {
+            display: none !important;
+        }
+        */
+}
+.project > .chart > .summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(50% - 2rem);
+  height: calc(50% - 2rem);
+  overflow: visible;
+  transform: translate(-50%, -50%);
+}
+.project > .chart > .summary > .title,
+.project > .chart > .summary > .value,
+.project > .chart > .summary > .unit {
+  display: block;
+  width: fit-content;
+  height: auto;
+  line-height: 1;
+  overflow: visible;
+  margin: 0 auto;
+  text-align: center;
+}
+.project > .chart > .summary > .title,
+.project > .chart > .summary > .unit {
+  will-change: transform;
+  transition: transform var(--kc-animation-duration) var(--kc-animation-easing);
+}
+.project > .chart > .summary > .title {
+  font-size: 1rem;
+}
+.project > .chart > .summary > .value {
+  font-family: monospace;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+.project > .chart > .summary > .value > small {
+  font-size: 0.5em;
+}
+.project > .tasks {
+  width: calc(100% + 1rem);
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  transform: translateX(-1rem);
+}
+.project > .tasks > .task {
+  --height: 3rem;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  height: var(--height);
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  will-change: transform;
+  transition: transform var(--kc-animation-duration) var(--kc-animation-easing);
+}
+.project > .tasks > .task > .title {
+  flex: 1 1 0;
+  order: 2;
+  width: auto;
+  height: 100%;
+  line-height: var(--height);
+  overflow: hidden;
+  padding-right: 0.5rem;
+  white-space: normal;
+  font-weight: bold;
+}
+.project > .tasks > .task > .chart {
+  order: 3;
+  width: 3rem;
+  height: 0.5rem;
+  margin: auto;
+  background-color: #ddd;
+}
+.project > .tasks > .task > .chart > .bar {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  will-change: width;
+  transition: width var(--kc-animation-duration) var(--kc-animation-easing);
+}
+.project > .tasks > .task > .time {
+  order: 4;
+  width: auto;
+  min-width: min-content;
+  height: 100%;
+  line-height: var(--height);
+  overflow: hidden;
+  padding-left: 0.5rem;
+  text-align: right;
+  white-space: nowrap;
+  font-family: monospace;
+  will-change: width;
+  transition: width var(--kc-animation-duration) var(--kc-animation-easing);
+  /*
+                > .value {
+                    > small {
+                        font-size: .75rem;
+                    }
+                }
+                > .unit {
+                    font-family: var(--kc-font-family, sans-serif);
+                    font-size: .75rem;
+                }
+                */
+}
+.project > .tasks > .task > .time > .value > small,
+.project > .tasks > .task > .time > .unit {
+  font-size: 0.75rem;
+}
+.project > .tasks > .task > .action {
+  order: 1;
+  width: 3rem;
+}
+.project > .tasks > .task > .action > button {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  color: var(--key-color);
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+}
+.project > .tasks > .task > .action > button > i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: var(--height);
+  font-size: 1rem;
+  font-weight: normal;
+}
+.project > .tasks > .task.template {
+  display: none;
+}
+.project > .tasks > .task.adder > .chart {
+  display: none;
+}
+.project > .tasks > .task.adder > .time {
+  display: none;
+}
+.project > .blank {
+  background-color: red;
+}
+.modal.edit .fields {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+.modal.edit .fields > .title {
+  width: 100%;
+}
+.modal.edit .fields > .hour,
+.modal.edit .fields > .min {
+  width: calc(50% - .5rem);
+  margin-bottom: 0;
+}
+.modal.edit .fields > .hour .input,
+.modal.edit .fields > .min .input {
+  --height: 3rem !important;
+  font-size: 2rem !important;
+}

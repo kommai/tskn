@@ -1,0 +1,436 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  --kc-base-color: #fff;
+  --kc-key-color: #000;
+  --kc-error-color: #b71c1c;
+  --kc-overlay-color: rgba(0, 0, 0, 0.5);
+  --kc-overlay-z-index: 9999;
+  --kc-line-height: 1.5;
+  --kc-border-width: 2px;
+  --kc-border-style: solid;
+  --kc-border-color: var(--kc-key-color);
+  --kc-font-family: sans-serif;
+  --kc-font-size: 16px;
+  --kc-font-weight: bold;
+  --kc-font-style: normal;
+  --kc-animation-duration: 200ms;
+  --kc-animation-easing: cubic-bezier(0, 0, 0.25, 1);
+  --kc-sidebar-width: 3rem;
+  width: 100%;
+  height: 100%;
+  line-height: var(--kc-line-height);
+  font-family: var(--kc-font-family);
+  font-size: var(--kc-font-size);
+  font-weight: var(--kc-font-weight);
+  font-style: var(--kc-font-style);
+  background-color: var(--kc-base-color);
+  color: var(--kc-key-color);
+}
+body {
+  margin: 0;
+  min-height: 100%;
+}
+p {
+  margin: 0 0 1rem 0;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+.kc.main {
+  width: 100%;
+  padding: 1rem;
+}
+.kc.sidebar + .kc.main {
+  width: calc(100% - var(--kc-sidebar-width));
+}
+.kc.sidebar {
+  --closed-width: 3rem;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: calc(var(--kc-overlay-z-index) - 2);
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.kc.sidebar > .closer {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
+  background-color: var(--kc-overlay-color);
+  opacity: 0;
+}
+.kc.sidebar > .closer > i {
+  display: block;
+  width: var(--closed-width);
+  height: var(--closed-width);
+  line-height: var(--closed-width);
+  text-align: center;
+  font-size: 1.5rem;
+  background-color: transparent;
+  color: var(--kc-base-color);
+}
+.kc.sidebar > .items {
+  pointer-events: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - var(--closed-width));
+  height: inherit;
+  overflow: hidden;
+  background-color: var(--kc-base-color);
+  transform: translateX(100%);
+}
+.kc.sidebar > .items > .item {
+  pointer-events: none;
+  margin-bottom: 1rem;
+}
+.kc.sidebar > .items > .item:last-child {
+  margin-bottom: 0;
+}
+.kc.sidebar > .items > .item > .label {
+  user-select: none;
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: var(--closed-width);
+  overflow: hidden;
+  padding: calc((var(--closed-width) - 1rem) / 2 - 4px) 1rem 0 var(--closed-width);
+  white-space: normal;
+  text-decoration: none;
+  background-color: transparent;
+  color: var(--kc-key-color);
+}
+.kc.sidebar > .items > .item > .label > i {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--closed-width);
+  height: var(--closed-width);
+  line-height: var(--closed-width);
+  text-align: center;
+  font-size: 1.5rem;
+}
+.kc.sidebar > .items > .item > .content {
+  padding: 1rem 1rem 1rem var(--closed-width);
+}
+.kc.sidebar.awake > .closer {
+  will-change: opacity;
+  transition: opacity var(--kc-animation-duration) var(--kc-animation-easing);
+}
+.kc.sidebar.awake > .items {
+  will-change: transform;
+  transition: transform var(--kc-animation-duration) var(--kc-animation-easing);
+}
+.kc.sidebar.opened > .closer {
+  pointer-events: auto;
+  opacity: 1;
+}
+.kc.sidebar.opened > .items {
+  overflow: scroll;
+  transform: translateX(var(--closed-width));
+}
+.kc.sidebar.opened > .items > .item {
+  pointer-events: auto;
+}
+.kc.modal {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: calc(var(--kc-overlay-z-index) - 1);
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.kc.modal > .backdrop {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
+  background-color: var(--kc-overlay-color);
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity var(--kc-animation-duration) var(--kc-animation-easing);
+}
+.kc.modal > .dialog {
+  --max-height: 50vh;
+  --button-height: 2.5rem;
+  pointer-events: none;
+  position: absolute;
+  top: calc(var(--max-height) * -1 - 1px);
+  left: 0;
+  width: inherit;
+  height: auto;
+  max-height: var(--max-height);
+  overflow: hidden;
+  color: inherit;
+  will-change: transform;
+  transition: transform var(--kc-animation-duration) var(--kc-animation-easing);
+}
+.kc.modal > .dialog > .content,
+.kc.modal > .dialog > .kc.form > .content {
+  pointer-events: auto;
+  width: inherit;
+  height: auto;
+  max-height: calc(var(--max-height) - var(--button-height));
+  overflow: scroll;
+  padding: 1rem;
+  background-color: var(--kc-base-color);
+  color: inherit;
+}
+.kc.modal > .dialog > .actions,
+.kc.modal > .dialog > .kc.form > .actions {
+  pointer-events: auto;
+  display: flex;
+  flex-flow: row nowrap;
+  width: inherit;
+  height: var(--button-height);
+}
+.kc.modal > .dialog > .actions > .kc.button,
+.kc.modal > .dialog > .kc.form > .actions > .kc.button {
+  width: 50%;
+  margin: 0;
+  border-bottom: none;
+  border-left: none;
+}
+.kc.modal > .dialog > .actions > .kc.button:last-child,
+.kc.modal > .dialog > .kc.form > .actions > .kc.button:last-child {
+  border-right: none;
+}
+.kc.modal.opened > .backdrop {
+  pointer-events: auto;
+  opacity: 1;
+}
+/*
+@media (min-width: @desktop-breakpoint) {
+    .kc.modal > .dialog > .content,
+    .kc.modal > .dialog > .actions {
+        width: @desktop-breakpoint;
+        margin: 0 auto;
+    }
+}
+*/
+.kc.form {
+  margin: 0;
+  /*
+    .actions {
+        margin-top: 1rem;
+    }
+    */
+}
+.kc.form .fields > .field {
+  margin-bottom: 1rem;
+}
+.kc.form .fields > .field:last-child {
+  margin-bottom: 0;
+}
+.kc.form .fields > .field > .title {
+  width: 100%;
+  height: 1rem;
+  line-height: 1rem;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
+  white-space: wrap;
+}
+.kc.form .fields + .actions {
+  margin-top: 1rem;
+}
+.kc.form .fields + .kc.form .actions {
+  margin-top: 1rem;
+}
+/*
+@media (min-width: @desktop-breakpoint) {
+    .kc.form > .actions {
+        display: flex;
+        flex-flow: row nowrap;
+        //justify-content: space-between;
+        justify-content: center;
+        //background-color: red;
+    }
+}
+*/
+.kc.input {
+  --height: 2rem;
+  --line-height: calc(var(--height) - var(--kc-border-width) * 2);
+  --padding: 0.25rem;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.kc.input > textarea,
+.kc.input > input[type="tel"],
+.kc.input > input[type="text"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: var(--height);
+  line-height: var(--line-height);
+  margin: 0;
+  padding: 0 var(--padding);
+  border-radius: 0;
+  border: var(--kc-border-width) var(--kc-border-style) var(--kc-border-color);
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  background-color: var(--kc-base-color);
+  color: var(--kc-key-color);
+}
+.kc.input textarea {
+  --rows: 3;
+  --line-height: 1.5rem;
+  height: calc(var(--line-height) * var(--rows) + var(--kc-border-width) * 2 + var(--padding) * 2);
+  padding: var(--padding);
+  line-height: var(--line-height);
+  resize: vertical;
+}
+/*
+.kc.input.massive {
+    --font-size: 24px; // dah you should calc from vars!
+}
+*/
+.kc.input.labeled {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.kc.input.labeled > label {
+  user-select: none;
+  display: block;
+  width: fit-content;
+  height: var(--height);
+  line-height: var(--line-height);
+  padding: 0 var(--padding);
+  border: var(--kc-border-width) var(--kc-border-style) var(--kc-border-color);
+  white-space: nowrap;
+  background-color: var(--kc-base-color);
+  color: var(--kc-key-color);
+}
+.kc.input.labeled.right > input {
+  border-right: none;
+}
+.kc.input.labeled.right > label {
+  border-left: none;
+}
+.kc.button {
+  --height: 2.5rem;
+  display: block;
+  width: 100%;
+  height: var(--height);
+  line-height: calc(var(--height) - var(--kc-border-width) * 2);
+  overflow: hidden;
+  margin: 0 0 0.5rem 0;
+  padding: 0 1rem;
+  border: var(--kc-border-width) var(--kc-border-style) var(--kc-border-color);
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  white-space: nowrap;
+  background-color: var(--kc-base-color);
+  color: var(--kc-key-color);
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.kc.button:last-child {
+  margin-bottom: 0;
+}
+.kc.button:disabled {
+  pointer-events: none;
+}
+.kc.button.primary {
+  background-color: var(--kc-key-color);
+  color: var(--kc-base-color);
+}
+.kc.button i {
+  margin-right: 0.25rem;
+  font-weight: normal;
+}
+.kc.button.staging {
+  position: relative;
+  padding: 0;
+}
+.kc.button.staging > .stage {
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: auto;
+  width: 100%;
+  height: 100%;
+  line-height: inherit;
+  overflow: hidden;
+  padding: 0 1rem;
+  background-color: inherit;
+  color: inherit;
+  will-change: transform;
+  transition: transform var(--kc-animation-duration) var(--kc-animation-easing);
+}
+.kc.button.staging > .stage:first-child {
+  z-index: 1;
+}
+.kc.button.staging > .stage.ghost {
+  position: absolute;
+  z-index: 2;
+}
+@media (min-width: 481px) {
+  .kc.button {
+    flex: 0 1 auto;
+    width: auto;
+    margin: 0 0.25rem;
+  }
+}
+.kc.blocker {
+  --icon-size: 1.5rem;
+  visibility: collapse;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: calc(var(--kc-overlay-z-index) + 0);
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--kc-overlay-color);
+  color: var(--kc-base-color);
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity 1s 3s linear;
+}
+.kc.blocker > i {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  font-size: var(--icon-size);
+}
+.kc.blocker.opened {
+  visibility: visible;
+  opacity: 1;
+}
+.kc i {
+  font-weight: normal;
+}

@@ -1,0 +1,23 @@
+{
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/mitsumotocs/chromephp-wrapper"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/mitsumotocs/pherret"
+        }
+    ],
+    "require": {
+        "phptal/phptal": "^1.4",
+        "mitsumotocs/chromephp-wrapper": "dev-master",
+        "mitsumotocs/pherret": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tskn\\": "app/tskn/"
+        }
+    }
+}

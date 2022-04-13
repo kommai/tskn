@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="title" content="たすくん - ${project/title}" />
+    <meta name="description" content="ユーザー登録不要！さくっと使える時間管理ウェブアプリ" />
+    <meta name="keywords" content="時間管理,タイムトラッキング,タイムトラッカー" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="たすくん - ${project/title}" />
+    <meta property="og:description" content="ユーザー登録不要！さくっと使える時間管理ウェブアプリ" />
+    <meta property="og:url" content="https://tskn.kommai.app/${project/slug}" />
+    <meta property="og:site_name" content="たすくん - ${project/title}" />
+    <base href="../../../public_html/tskn/" tal:attributes="href string:/" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-PVBCHQFB3N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-PVBCHQFB3N');
+    </script>
+    <script src="https://unpkg.com/@popperjs/core@2" defer="defer"></script>
+    <script src="https://unpkg.com/tippy.js@6" defer="defer"></script>
+    <script type="module" src="js/project.js?43542334428" defer="defer"></script>
+    <!--<script src="js/project.bundle.min.js?" defer="defer"></script>-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="stylesheet" href="vendor/fontawesome-pro/css/all.min.css"/>
+    <link rel="stylesheet" href="css/style.css?853423442289"/>
+    <title>たすくん - <tal:block tal:replace="project/title">プロジェクト名</tal:block></title>
+</head>
+<body>
+    <nav class="kc sidebar">
+        <div class="closer"><i class="far fa-times"></i></div>
+        <div class="items">
+            <div class="item">
+                <a href="./" class="label"><i class="far fa-info-circle"></i>このウェブアプリについて</a>
+            </div>
+            <div class="item">
+                <a href="#" class="label"><i class="far fa-share-alt"></i>プロジェクトを共有する</a>
+            </div>
+            <div class="item">
+                <a href="#" class="label"><i class="far fa-pen"></i>プロジェクトの名前を変える</a>
+            </div>
+            <div class="item">
+                <a href="#" class="label"><i class="far fa-lock-alt"></i>プロジェクトの合言葉を変える</a>
+            </div>
+            <div class="item">
+                <a href="#" class="label"><i class="far fa-sign-out-alt"></i>プロジェクトを閉じる</a>
+            </div>
+            <div class="item">
+                <a href="#" class="label"><i class="far fa-trash-alt"></i>プロジェクトを消す</a>
+            </div>
+            <div class="item">
+                <a href="./new" class="label"><i class="far fa-sparkles"></i>新しいプロジェクトを作る</a>
+            </div>
+        </div>
+    </nav>
+    <main class="kc main">
+        <div class="project">
+            <div class="title">
+                <h1></h1>
+            </div>
+            <div class="chart">
+                <canvas></canvas>
+                <div class="summary">
+                    <h2 class="title">合計</h2>
+                    <span class="value">0<small>.0</small></span><span class="unit">時間</span>
+                </div>
+            </div>
+            <ul class="tasks">
+                <li class="task template">
+                    <div class="title">テンプレート</div>
+                    <div class="chart"><div class="bar"></div></div>
+                    <div class="time">
+                        <span class="value">999<small>.9</small></span><span class="unit">時間</span>
+                    </div>
+                    <div class="action"><button type="button"><i class="far fa-minus-circle"></i></button></div>
+                </li>
+                <li class="task adder">
+                    <div class="title">新しいタスクを追加する</div>
+                    <div class="action"><button type="button"><i class="far fa-plus-circle"></i></button></div>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <div class="kc modal" id="modal-welcome">
+        <div class="backdrop"></div>
+        <div class="dialog">
+            <form class="kc form">
+                <div class="content">
+                    <p>ようこそ新しいプロジェクトへ！</p>
+                    <p>たすくんではユーザー登録が不要なかわりに、プロジェクトのURLと合言葉が必要になります。プロジェクト（このページ）のURLをブックマークするか、どこかに控えておいてください。</p>
+                    <p>プロジェクトのURLはメニューの [プロジェクトを共有する] からも確認できます。</p>
+                    <div class="fields">
+                        <div class="field title">
+                            <div class="title">URL</div>
+                            <div class="kc input">
+                                <input type="text" name="url" value="" placeholder="" readonly="readonly" autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button type="button" class="kc button"><i class="far fa-times-circle"></i>閉じる</button>
+                    <button type="button" class="kc button staging primary">
+                        <span class="stage" data-stage-name="idle"><i class="far fa-clipboard"></i>URLをコピーする</span>
+                        <span class="stage" data-stage-name="done"><i class="far fa-clipboard-check"></i>コピーしました</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="kc modal edit" id="modal-edit">
+        <div class="backdrop"></div>
+        <div class="dialog">
+            <form class="kc form">
+                <div class="content">
+                    <div class="fields">
+                        <div class="field title">
+                            <div class="title">タスクの名前</div>
+                            <div class="kc input">
+                                <input type="text" value="" placeholder="" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="field hour">
+                            <div class="kc input labeled right massive">
+                                <input type="tel" value="0" placeholder="0" autocomplete="off" />
+                                <label>時間</label>
+                            </div>
+                        </div>
+                        <div class="field min">
+                            <div class="kc input labeled right massive">
+                                <input type="tel" value="0" placeholder="0" autocomplete="off" />
+                                <label>分</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button type="button" class="kc button"><i class="far fa-times-circle"></i>やめる</button>
+                    <button type="submit" class="kc button staging primary">
+                        <span class="stage" data-stage-name="idle"><i class="far fa-plus-circle"></i>追加する</span>
+                        <span class="stage" data-stage-name="busy"><i class="far fa-spinner-third fa-spin"></i>追加しています</span>
+                        <span class="stage" data-stage-name="done"><i class="far fa-check-circle"></i>追加しました</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="kc modal" id="modal-delete-task">
+        <div class="backdrop"></div>
+        <div class="dialog">
+            <form class="kc form">
+                <div class="content">
+                    <p></p>
+                </div>
+                <div class="actions">
+                    <button type="button" class="kc button"><i class="far fa-times-circle"></i>やめる</button>
+                    <button type="submit" class="kc button staging primary">
+                        <span class="stage" data-stage-name="idle"><i class="far fa-trash-alt"></i>削除する</span>
+                        <span class="stage" data-stage-name="busy"><i class="far fa-spinner-third fa-spin"></i>削除しています</span>
+                        <span class="stage" data-stage-name="done"><i class="far fa-check-circle"></i>削除しました</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="kc modal" id="modal-delete">
+        <div class="backdrop"></div>
+        <div class="dialog">
+            <form class="kc form">
+                <div class="content">
+                    <p></p>
+                    <div class="fields">
+                        <div class="field">
+                            <div class="title">合言葉</div>
+                            <div class="kc input">
+                                <input type="text" name="key" value="" placeholder="" autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button type="button" class="kc button"><i class="far fa-times-circle"></i>やめる</button>
+                    <button type="submit" class="kc button staging primary">
+                        <span class="stage" data-stage-name="idle"><i class="far fa-trash-alt"></i>削除する</span>
+                        <span class="stage" data-stage-name="busy"><i class="far fa-spinner-third fa-spin"></i>削除しています</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="kc modal" id="modal-rename">
+        <div class="backdrop"></div>
+        <div class="dialog">
+            <form class="kc form">
+                <div class="content">
+                    <div class="fields">
+                        <div class="field">
+                            <div class="title">新しいプロジェクト名</div>
+                            <div class="kc input">
+                                <input type="text" name="title" value="" placeholder="" autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button type="button" class="kc button"><i class="far fa-times-circle"></i>やめる</button>
+                    <button type="submit" class="kc button staging primary">
+                        <span class="stage" data-stage-name="idle"><i class="far fa-trash-alt"></i>変更する</span>
+                        <span class="stage" data-stage-name="busy"><i class="far fa-spinner-third fa-spin"></i>変更しています</span>
+                        <span class="stage" data-stage-name="done"><i class="far fa-check-circle"></i>変更しました</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="kc modal" id="modal-key">
+        <div class="backdrop"></div>
+        <div class="dialog">
+            <form class="kc form">
+                <div class="content">
+                    <div class="fields">
+                        <div class="field">
+                            <div class="title">今の合言葉</div>
+                            <div class="kc input">
+                                <input type="text" name="current" value="" placeholder="" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="title">新しい合言葉</div>
+                            <div class="kc input">
+                                <input type="text" name="new" value="" placeholder="" autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button type="button" class="kc button"><i class="far fa-times-circle"></i>やめる</button>
+                    <button type="submit" class="kc button staging primary">
+                        <span class="stage" data-stage-name="idle"><i class="far fa-trash-alt"></i>変更する</span>
+                        <span class="stage" data-stage-name="busy"><i class="far fa-spinner-third fa-spin"></i>変更しています</span>
+                        <span class="stage" data-stage-name="done"><i class="far fa-check-circle"></i>変更しました</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="kc modal" id="modal-share">
+        <div class="backdrop"></div>
+        <div class="dialog">
+            <form class="kc form">
+                <div class="content">
+                    <p>URLと合言葉を伝えてください。</p>
+                    <div class="fields">
+                        <div class="field title">
+                            <div class="title">URL</div>
+                            <div class="kc input">
+                                <input type="text" name="url" value="" placeholder="" readonly="readonly" autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button type="button" class="kc button"><i class="far fa-times-circle"></i>閉じる</button>
+                    <button type="button" class="kc button staging primary">
+                        <span class="stage" data-stage-name="idle"><i class="far fa-clipboard"></i>URLをコピーする</span>
+                        <span class="stage" data-stage-name="done"><i class="far fa-clipboard-check"></i>コピーしました</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="kc blocker"><i class="far fa-spinner-third fa-spin"></i></div>
+</body>
+</html>

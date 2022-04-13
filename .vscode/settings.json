@@ -1,0 +1,7 @@
+{
+    "less.compile": {
+        "main": [
+            "style.less"
+        ],
+    }
+}

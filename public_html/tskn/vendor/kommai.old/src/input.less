@@ -1,0 +1,71 @@
+.kc.input {
+    --height: 2rem;
+    --line-height: calc(~"var(--height) - var(--kc-border-width) * 2");
+    --padding: .25rem;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    > textarea,
+    > input[type="tel"],
+    > input[type="text"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        display: block;
+        width: 100%;
+        min-width: 0; // Fix for Firefox
+        height: var(--height);
+        line-height: var(--line-height);
+        margin: 0;
+        padding: 0 var(--padding);
+        border-radius: 0;
+        border: var(--kc-border-width) var(--kc-border-style) var(--kc-border-color);
+        outline: none;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        font-style: inherit;
+        background-color: var(--kc-base-color);
+        color: var(--kc-key-color);
+    }
+    textarea {
+        --rows: 3;
+        --line-height: 1.5rem;
+        height: calc(~"var(--line-height) * var(--rows) + var(--kc-border-width) * 2 + var(--padding) * 2");
+        padding: var(--padding);
+        line-height: var(--line-height);
+        resize: vertical;
+    }
+}
+/*
+.kc.input.massive {
+    --font-size: 24px; // dah you should calc from vars!
+}
+*/
+
+.kc.input.labeled {
+    display: flex;
+    flex-flow: row nowrap;
+    > label {
+        user-select: none;
+        display: block;
+        width: fit-content;
+        height: var(--height);
+        line-height: var(--line-height);
+        padding: 0 var(--padding);
+        border: var(--kc-border-width) var(--kc-border-style) var(--kc-border-color);
+        //font-size: inherit;
+        //font-weight: bold;
+        white-space: nowrap;
+        background-color: var(--kc-base-color);
+        color: var(--kc-key-color);
+    }
+}
+.kc.input.labeled.right {
+    > input {
+        border-right: none;
+    }
+    > label {
+        border-left: none;
+    }
+}

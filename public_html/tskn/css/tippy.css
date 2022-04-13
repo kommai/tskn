@@ -1,0 +1,18 @@
+.tippy-box[data-theme~='error'] {
+  background-color: var(--kc-error-color);
+  color: var(--kc-base-color);
+  border-radius: 0;
+}
+.tippy-box[data-theme~='error'] > .tippy-arrow {
+  color: var(--kc-error-color);
+}
+/*
+.tippy-box[data-theme~='custom-theme'] {
+            background-color: red;
+            color: white;
+            border-radius: 0;
+        }
+        .tippy-box[data-theme~='custom-theme'] > .tippy-arrow {
+            color: red;
+        }
+*/

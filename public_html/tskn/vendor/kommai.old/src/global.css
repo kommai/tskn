@@ -1,0 +1,41 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  --kc-base-color: #fff;
+  --kc-key-color: #000;
+  --kc-error-color: #b71c1c;
+  --kc-overlay-color: rgba(0, 0, 0, 0.5);
+  --kc-overlay-z-index: 9999;
+  --kc-line-height: 1.5;
+  --kc-border-width: 2px;
+  --kc-border-style: solid;
+  --kc-border-color: var(--kc-key-color);
+  --kc-font-family: sans-serif;
+  --kc-font-size: 16px;
+  --kc-font-weight: bold;
+  --kc-font-style: normal;
+  --kc-animation-duration: 200ms;
+  --kc-animation-easing: cubic-bezier(0, 0, 0.25, 1);
+  width: 100%;
+  height: 100%;
+  line-height: var(--kc-line-height);
+  font-family: var(--kc-font-family);
+  font-size: var(--kc-font-size);
+  font-weight: var(--kc-font-weight);
+  font-style: var(--kc-font-style);
+  background-color: var(--kc-base-color);
+  color: var(--kc-key-color);
+}
+body {
+  margin: 0;
+  min-height: 100%;
+}
+p {
+  margin: 0 0 1rem 0;
+}
+p:last-child {
+  margin-bottom: 0;
+}

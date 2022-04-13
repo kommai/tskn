@@ -1,0 +1,34 @@
+.kc.blocker {
+    --icon-size: 1.5rem;
+    visibility: collapse;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: calc(~"var(--kc-overlay-z-index) + 0");
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--kc-overlay-color);
+    color: var(--kc-base-color);
+    //background-color: rgba(0, 0, 0, 0);
+    opacity: 0;
+    //opacity: .25;
+    will-change: opacity;
+    transition: opacity 1s 3s linear;
+    //transition: opacity var(--kc-animation-duration) 1s var(--kc-animation-easing);
+    > i {
+        //display: block;
+        width: var(--icon-size);
+        height: var(--icon-size);
+        //line-height: var(--icon-size);
+        font-size: var(--icon-size);
+        //font-weight: normal;
+    }
+}
+.kc.blocker.opened {
+    visibility: visible;
+    opacity: 1;
+}
